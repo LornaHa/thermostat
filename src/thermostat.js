@@ -1,9 +1,14 @@
 function Thermostat() {
   this.temperature = 20
+  this.powerSaving = true
 }
 
 Thermostat.prototype.up = function(number) {
-  return this.temperature+=number
+  if (this.powerSaving === true && this.temperature >= 25) {
+    throw new Error('Power saving on: Exceeds maximum temperature');
+  } else {
+    return this.temperature+=number
+  }
 
 };
 

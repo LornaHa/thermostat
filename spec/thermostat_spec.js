@@ -30,14 +30,30 @@ describe('Thermostat', function() {
       expect(function() {
         thermostat.down(10);
       }).toThrowError('Exceeds minimum temperature');
-
     });
-
   });
 
-
-
-
-
+  describe('power saving mode', function() {
+    it('sets the power saving mode on', function() {
+      expect(thermostat.powerSaving).toEqual(true);
+    });
+    it('throws error if the power saving mode exceeds maximum 25 degrees', function() {
+      thermostat.up(15);
+      expect(function() {
+        thermostat.up(15);
+      }).toThrowError('Power saving on: Exceeds maximum temperature')
+    });
+  });
 
 });
+
+  // As a person
+  // So I dont waste money
+  // I would like a power saving mode
+
+
+
+
+
+
+  // with a maximum temperature of 25 degrees
