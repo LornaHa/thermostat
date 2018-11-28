@@ -25,6 +25,7 @@ describe('Thermostat', function() {
       thermostat.down(1)
       expect(thermostat.temperature).toEqual(19);
     });
+
     it('has doesnt go below the minimum temperature', function() {
       thermostat.down(10)
       expect(function() {
@@ -50,12 +51,14 @@ describe('Thermostat', function() {
       }).toThrowError('Power saving on: Exceeds maximum temperature')
     });
 
-
+    it('changes power saving mode to off, and limits max temperature to 32', function() {
+      thermostat.powerSaving()
+      thermostat.up(13);
+      expect(function(){
+        thermostat.up(13);
+      }).toThrowError('Power saving off: Exceeds maximum temperature')
+    });
 
   });
 
 });
-
-// As a person
-// So I have flexibility
-// I would like to turn off the power saving mode, and increase the maximum temperature

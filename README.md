@@ -24,4 +24,4 @@ I would like a power saving mode with a maximum temperature of 25 degrees
 
 As a person
 So I have flexibility
-I would like to turn off the power saving mode, and increase the maximum temperature
+I would like to turn off the power saving mode, and increase the maximum temperature to 32

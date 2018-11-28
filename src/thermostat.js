@@ -6,10 +6,11 @@ function Thermostat() {
 Thermostat.prototype.up = function(number) {
   if (this.powerSavingMode === true && this.temperature >= 25) {
     throw new Error('Power saving on: Exceeds maximum temperature');
+  } else if (this.powerSavingMode === false && this.temperature >= 32) {
+    throw new Error('Power saving off: Exceeds maximum temperature');
   } else {
     return this.temperature+=number
   }
-
 };
 
 Thermostat.prototype.down = function(number) {
