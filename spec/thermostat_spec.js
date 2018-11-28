@@ -1,6 +1,6 @@
 // As a person
-// So I can keep warm in the winter
-// I want to be able to increase the temperature of the thermostat
+// So I don't waste electricity
+// I want to be able to decrease the temperature of the thermostat
 
 describe('Thermostat', function() {
   var thermostat;
@@ -23,7 +23,12 @@ describe('Thermostat', function() {
     });
   });
 
-
+  describe('to decrease temperature', function() {
+    it('increases temperature by 1 degree', function() {
+      thermostat.down()
+      expect(thermostat.temperature).toEqual(19);
+    });
+  });
 
 
 
