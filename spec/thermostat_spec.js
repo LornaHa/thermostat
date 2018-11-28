@@ -58,7 +58,18 @@ describe('Thermostat', function() {
         thermostat.up(13);
       }).toThrowError('Power saving off: Exceeds maximum temperature')
     });
-
   });
 
+  describe('resets the temperature', function() {
+    it('resets the temperature back to 20 degrees', function() {
+      thermostat.up(5);
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(20);
+    });
+  });
 });
+
+
+// As a person
+// So I don't have to press as many buttons
+// I would like a temperature reset button function
