@@ -1,6 +1,3 @@
-// As a person
-// So I don't waste electricity
-// I want to be able to decrease the temperature of the thermostat
 
 describe('Thermostat', function() {
   var thermostat;
