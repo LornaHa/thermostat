@@ -25,3 +25,11 @@ I would like a power saving mode with a maximum temperature of 25 degrees
 As a person
 So I have flexibility
 I would like to turn off the power saving mode, and increase the maximum temperature to 32
+
+As a person
+So I don't have to press as many buttons
+I would like a temperature reset button function
+
+As a person
+So I know how much energy I am using
+I would like to be told whether I am low usage, medium usage and high usage
