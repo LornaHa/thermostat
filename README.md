@@ -1,4 +1,4 @@
-# thermostat
+# Thermostat
 
 ## User Stories:
 
