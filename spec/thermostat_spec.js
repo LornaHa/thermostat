@@ -5,6 +5,7 @@ describe('Thermostat', function() {
 
   beforeEach(function(){
     thermostat = new Thermostat();
+    specHelper = new SpecHelper();
   });
 
   describe('default status', function() {
@@ -15,20 +16,20 @@ describe('Thermostat', function() {
 
   describe('to increase temperature', function() {
     it('increases temperature by 1 degree', function() {
-      thermostat.up(1)
+      thermostat.up();
       expect(thermostat.temperature).toEqual(21);
     });
   });
 
   describe('to decrease temperature', function() {
     it('decreases temperature by 1 degree', function() {
-      thermostat.down(1)
+      thermostat.down()
       expect(thermostat.temperature).toEqual(19);
     });
 
     it('doesnt go below the minimum temperature', function() {
       expect(function() {
-        thermostat.down(10);
+        specHelper.down(thermostat, 10);
       }).toThrowError('Exceeds minimum temperature')
 
     });
@@ -46,21 +47,21 @@ describe('Thermostat', function() {
 
     it('throws error if the power saving mode exceeds maximum 25 degrees', function() {
       expect(function() {
-        thermostat.up(15);
+      specHelper.up(thermostat, 15)
       }).toThrowError('Power saving on: Exceeds maximum temperature')
     });
 
     it('changes power saving mode to off, and limits max temperature to 32', function() {
       thermostat.powerSaving()
       expect(function() {
-        thermostat.up(12);
+      specHelper.up(thermostat, 12)
       }).toThrowError('Power saving off: Exceeds maximum temperature')
     });
   });
 
   describe('resets the temperature', function() {
     it('resets the temperature back to 20 degrees', function() {
-      thermostat.up(4);
+      specHelper.up(thermostat,4)
       thermostat.reset();
       expect(thermostat.temperature).toEqual(20);
     });
@@ -68,7 +69,7 @@ describe('Thermostat', function() {
 
   describe('energy usage', function() {
     it('returns low usage if temperature is < 18', function() {
-      thermostat.down(5);
+      specHelper.down(thermostat, 5);
       expect(thermostat.energyUsage()).toEqual('Low-usage');
     });
 
@@ -78,7 +79,7 @@ describe('Thermostat', function() {
 
     it('returns high usage if temperature is higher than 25', function() {
       thermostat.powerSaving();
-      thermostat.up(6);
+      specHelper.up(thermostat,6)
       expect(thermostat.energyUsage()).toEqual('High-usage');
     });
   });

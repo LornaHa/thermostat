@@ -2,6 +2,7 @@ function Thermostat() {
   this.temperature = 20
   this.defaultTemperature = 20
   this.powerSavingStatus = true
+  this.minTemperature = 10
   this.lowUsage = 18
   this.mediumUsage = 25
   this.powerSavingOnMax = 25
@@ -9,24 +10,24 @@ function Thermostat() {
 
 }
 
-Thermostat.prototype.up = function(number) {
-  if (this.powerSavingStatus === true && (this.temperature + number) >= this.powerSavingOnMax) {
+Thermostat.prototype.up = function() {
+  if (this.powerSavingStatus === true && (this.temperature + 1) >= this.powerSavingOnMax) {
     throw new Error('Power saving on: Exceeds maximum temperature');
     return;
-  } else if (this.powerSavingStatus === false && (this.temperature + number) >= this.powerSavingOffMax) {
+  } else if (this.powerSavingStatus === false && (this.temperature + 1) >= this.powerSavingOffMax) {
     throw new Error('Power saving off: Exceeds maximum temperature');
     return;
   } else {
-    return this.temperature += number
+    return this.temperature += 1
   }
 };
 
-Thermostat.prototype.down = function(number) {
-  if ((this.temperature - number) <= 10) {
+Thermostat.prototype.down = function() {
+  if ((this.temperature - 1) <= this.minTemperature) {
     throw new Error('Exceeds minimum temperature');
     return;
   } else {
-    return this.temperature -= number
+    return this.temperature -= 1
   }
 };
 
