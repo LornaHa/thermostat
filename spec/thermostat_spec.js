@@ -44,6 +44,13 @@ describe('Thermostat', function() {
       expect(thermostat.powerSavingStatus).toEqual(false);
     });
 
+    it('toggles the power saving mode', function() {
+      thermostat.powerSaving()
+      expect(thermostat.powerSavingStatus).toEqual(false);
+      thermostat.powerSaving()
+      expect(thermostat.powerSavingStatus).toEqual(true);
+    });
+
     it('throws error if the power saving mode exceeds maximum 25 degrees', function() {
       expect(function() {
       specHelper.up(thermostat, 15)
@@ -53,7 +60,7 @@ describe('Thermostat', function() {
     it('changes power saving mode to off, and limits max temperature to 32', function() {
       thermostat.powerSaving()
       expect(function() {
-      specHelper.up(thermostat, 12)
+      specHelper.up(thermostat, 13)
       }).toThrowError('Power saving off: Exceeds maximum temperature')
     });
   });
