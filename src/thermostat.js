@@ -10,11 +10,11 @@ function Thermostat() {
 
 }
 
+
+
 Thermostat.prototype.up = function() {
-  if (this.powerSavingStatus === true && (this.temperature + 1) >= this.powerSavingOnMax) {
-    throw new Error('Power saving on: Exceeds maximum temperature');
-    return;
-  } else if (this.powerSavingStatus === false && (this.temperature + 1) >= this.powerSavingOffMax) {
+  this._powerSavingOnExceedsMaxTemp();
+  if (this.powerSavingStatus === false && (this.temperature + 1) >= this.powerSavingOffMax) {
     throw new Error('Power saving off: Exceeds maximum temperature');
     return;
   } else {
@@ -47,5 +47,12 @@ Thermostat.prototype.energyUsage = function() {
     return 'Medium-usage';
   } else {
     return 'High-usage';
+  }
+};
+
+Thermostat.prototype._powerSavingOnExceedsMaxTemp = function() {
+  if (this.powerSavingStatus === true && (this.temperature + 1) >= this.powerSavingOnMax) {
+    throw new Error('Power saving on: Exceeds maximum temperature');
+    return;
   }
 };
