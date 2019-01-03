@@ -4,7 +4,17 @@ A Test Driven Developed Thermostat app written in Javascript
 
 ## Getting Started
 
+### Prerequisites
 
+Jasmine JavaScript Testing Framework
+
+### Installing
+[Jasmine 3.3.0](https://github.com/jasmine/jasmine/releases)
+Download the latest release of Jasmine
+
+## Running the tests
+
+Open SpecRunner.html in a web browser to run
 
 ## User Stories:
 
